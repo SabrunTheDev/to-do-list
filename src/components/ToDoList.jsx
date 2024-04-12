@@ -15,21 +15,21 @@ export default function ToDoList() {
     console.log(...toDos);
   };
 
-  // const completeToDo = (id) => {
-  //   let updatedToDos = toDos.map((todo) => {
-  //     if (todo.id === id) {
-  //       todo.isComplete = !todo.isComplete;
-  //     }
-  //     return todo;
-  //   });
-  //   setToDo(updatedToDos);
-  // };
+  const completeToDo = (id) => {
+    let updatedToDos = toDos.map((todo) => {
+      if (todo.id === id) {
+        todo.isComplete = !todo.isComplete;
+      }
+      return todo;
+    });
+    setToDo(updatedToDos);
+  };
 
   return (
     <div className="">
       <h1>What To Do Today?</h1>
       <ToDoForm onSubmit={addToDo} />
-      <ToDo />
+      <ToDo toDos={toDos} completeToDo={completeToDo} />
     </div>
   );
 }
