@@ -42,7 +42,7 @@ export default function ToDoForm(props) {
         <>
           <input
             type="text"
-            placeholder="Add a todo"
+            placeholder="Add a To Do"
             value={input}
             name="text"
             className="todo-input"
