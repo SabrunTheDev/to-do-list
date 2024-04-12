@@ -25,11 +25,30 @@ export default function ToDoList() {
     setToDo(updatedToDos);
   };
 
+  const deleteToDo = (id) => {
+    let deletedToDos = [...toDos].filter((todo) => todo.id !== id);
+
+    setToDo(deletedToDos);
+  };
+
+  const editToDo = (toDoId, newId) => {
+    if (!newId.text || /^\s*$/.test(newId.text)) {
+      return;
+    }
+
+    setToDo((prev) => prev.map((todo) => (todo.id === toDoId ? newId : todo)));
+  };
+
   return (
     <div className="">
       <h1>What To Do Today?</h1>
       <ToDoForm onSubmit={addToDo} />
-      <ToDo toDos={toDos} completeToDo={completeToDo} />
+      <ToDo
+        toDos={toDos}
+        completeToDo={completeToDo}
+        deleteToDo={deleteToDo}
+        editToDo={editToDo}
+      />
     </div>
   );
 }

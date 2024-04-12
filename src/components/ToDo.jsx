@@ -3,11 +3,23 @@ import ToDoForm from "./ToDoForm";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { TiEdit } from "react-icons/ti";
 
-export default function ToDo({ toDos, completeToDo, removeToDo }) {
+export default function ToDo({ toDos, completeToDo, deleteToDo, editToDo }) {
   const [edit, setEdit] = useState({
     id: null,
     value: "",
   });
+
+  const submitUpdate = (value) => {
+    editToDo(edit.id, value);
+    setEdit({
+      id: null,
+      value: "",
+    });
+  };
+
+  if (edit.id) {
+    return <ToDoForm edit={edit} onSubmit={submitUpdate} />;
+  }
 
   return toDos.map((todo, index) => (
     <div
@@ -18,8 +30,14 @@ export default function ToDo({ toDos, completeToDo, removeToDo }) {
         {todo.text}
       </div>
       <div className="icons">
-        <RiCloseCircleLine />
-        <TiEdit />
+        <RiCloseCircleLine
+          onClick={() => deleteToDo(todo.id)}
+          className="delete-icon"
+        />
+        <TiEdit
+          onClick={() => setEdit({ id: todo.id, value: todo.text })}
+          className="delete-icon"
+        />
       </div>
     </div>
   ));
