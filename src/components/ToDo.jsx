@@ -35,10 +35,14 @@ export default function ToDo({ toDos, completeToDo, deleteToDo, editToDo }) {
           onClick={() => completeToDo(todo.id)}
           className="check-icon"
         />
-        <RiCloseCircleLine
-          onClick={() => deleteToDo(todo.id)}
-          className="delete-icon"
-        />
+        {todo.isComplete && (
+          <RiCloseCircleLine
+            onClick={() => deleteToDo(todo.id)}
+            disabled={!todo.isComplete}
+            className="delete-icon"
+          />
+        )}
+
         <TiEdit
           onClick={() => setEdit({ id: todo.id, value: todo.text })}
           className="edit-icon"

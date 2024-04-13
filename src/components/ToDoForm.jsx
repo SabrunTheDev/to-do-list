@@ -36,7 +36,7 @@ export default function ToDoForm(props) {
             onChange={handleChange}
             ref={inputRef}
           />
-          <button className="todo-button">Add To List</button>
+          <button className="todo-button">Save</button>
         </>
       ) : (
         <>
